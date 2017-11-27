@@ -1,0 +1,21 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: client-ingress
+  namespace: almond
+  annotations:
+    kubernetes.io/ingress.global-static-ip-name: almond-static-ip
+    kubernetes.io/ingress.allow-http: "false"
+spec:
+  tls:
+  - hosts:
+    - almond.karkanis.com
+    secretName: almond-karkanis-com-cert
+  rules:
+  - host: almond.karkanis.com
+    http:
+      paths:
+      - path: /*
+        backend:
+          serviceName: client-svc
+          servicePort: 80

@@ -1,0 +1,20 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    run: ubuntu
+  name: ubuntu
+  namespace: almond
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: ubuntu
+  template:
+    metadata:
+      labels:
+        run: ubuntu
+    spec:
+      containers:
+      - image: ubuntu:17.10
+        name: ubuntu
